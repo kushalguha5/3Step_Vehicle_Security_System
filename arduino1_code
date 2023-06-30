@@ -1,0 +1,30 @@
+String dicid;
+int sled1=8;
+int face=0;
+
+void setup() {
+  // put your setup code here, to run once:
+//put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(sled1,OUTPUT);
+//digitalWrite(sled1,LOW);
+pinMode(12,INPUT);
+pinMode(6,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+while(Serial.available()==0);
+dicid=Serial.readStringUntil('\n');
+
+if(dicid== "HI"){
+ Serial.println("Phone Authentication Passed");
+  Serial.end();
+  //digitalWrite(sled1,LOW);
+  analogWrite(6,255);  
+}
+else {
+  digitalWrite(sled1,0);
+        Serial.println("Wrong Password Entered"); 
+     }
+}
